@@ -27,7 +27,7 @@ $string['createpoodll'] = 'Create poodll';
 $string['enterurl'] = 'Enter a URL';
 $string['openinnewwindow'] = 'Open in new window';
 $string['pluginname'] = 'PoodLL Anywhere(Atto)';
-$string['settings'] = 'Settings for PoodLL Anywhere(Atto)';
+$string['settings'] = 'PoodLL Anywhere(Atto)';
 $string['unpoodll'] = 'Unpoodll';
 
 
