@@ -89,17 +89,24 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
                     'warn', LOGNAME);
             return;
         }
+        
+        //if we don't have the capability, or no file uploads allowed, give up.
+        if(config.disabled){
+        	return;
+        }
     
     	var recorders = new Array('audiomp3','audiored5','video', 'whiteboard','snapshot');
     	for (var therecorder = 0; therecorder < recorders.length; therecorder++) {
-			// Add the poodll button first.
-			this.addButton({
-				icon: recorders[therecorder],
-				iconComponent: 'atto_poodll',
-				buttonName: recorders[therecorder],
-				callback: this._displayDialogue,
-				callbackArgs: recorders[therecorder]
-			});
+			// Add the poodll button first (if we are supposed to)
+			if(config.hasOwnProperty(recorders[therecorder])){
+				this.addButton({
+					icon: recorders[therecorder],
+					iconComponent: 'atto_poodll',
+					buttonName: recorders[therecorder],
+					callback: this._displayDialogue,
+					callbackArgs: recorders[therecorder]
+				});
+			}
         }
        
     },
@@ -217,7 +224,6 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
             focusAfterHide: null
         }).hide();
         
-   
         var thefilename = document.getElementById(this._getFilenameControlName());
         //if no file is there to insert, don't do it
         if(!thefilename.value){
@@ -227,20 +233,21 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
 
          var thefilename = thefilename.value;
          var wwwroot = M.cfg.wwwroot;
+         var mediahtml='';
            
 		   // It will store in mdl_question with the "@@PLUGINFILE@@/myfile.mp3" for the filepath.
 		   var filesrc =wwwroot+'/draftfile.php/'+ this._usercontextid +'/user/draft/'+this._itemid+'/'+thefilename;
 
 		//if this is an image, insert the image
-		if(this._currentrecorder=='snapshot' ||this._currentrecorder=='whiteboard'){
+		if(this._currentrecorder==='snapshot' ||this._currentrecorder==='whiteboard'){
 			template = Y.Handlebars.compile(IMAGETEMPLATE);
-            var mediahtml = template({
+            mediahtml = template({
                 url: filesrc,
                 alt: thefilename,
             });		
         //otherwise insert the link
 		}else{
-			var mediahtml = '<a href="'+filesrc+'">'+thefilename+'</a>';
+			mediahtml = '<a href="'+filesrc+'">'+thefilename+'</a>';
 		}
 
 		this.editor.focus();
@@ -255,7 +262,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      * @public
      */
 	updatefilename : function(args) {
-		//record the url on the html page,							
+		//record the url on the html page						
 		//var filenamecontrol = document.getElementById(args[3]);
 		var filenamecontrol = document.getElementById(this._getFilenameControlName());
 		if(filenamecontrol===null){ filenamecontrol = parent.document.getElementById(args[3]);} 			

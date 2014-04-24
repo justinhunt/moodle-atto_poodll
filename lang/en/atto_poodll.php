@@ -26,7 +26,8 @@ $string['browserepositories'] = 'Browse repositories...';
 $string['createpoodll'] = 'Create poodll';
 $string['enterurl'] = 'Enter a URL';
 $string['openinnewwindow'] = 'Open in new window';
-$string['pluginname'] = 'PoodLL Anywhere';
+$string['pluginname'] = 'PoodLL Anywhere(Atto)';
+$string['settings'] = 'Settings for PoodLL Anywhere(Atto)';
 $string['unpoodll'] = 'Unpoodll';
 
 
@@ -56,3 +57,10 @@ $string['recorderstoshow'] = 'Recorders to show';
 $string['recorderstoshowdetails'] = '';
 $string['insert'] = 'Insert';
 $string['cancel'] = 'Cancel';
+
+$string['poodll:allowaudiomp3'] = 'Allow MP3 Recording';
+$string['poodll:allowaudiored5'] = 'Allow Audio(Red5) Recording';
+$string['poodll:allowwhiteboard'] = 'Allow Whiteboard';
+$string['poodll:allowvideo'] = 'Allow Video Recording';
+$string['poodll:allowsnapshot'] = 'Allow Snapshot';
+$string['poodll:visible'] = 'Visible';

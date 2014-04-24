@@ -33,14 +33,9 @@ require_once($CFG->dirroot . '/filter/poodll/poodllresourcelib.php');
 function atto_poodll_strings_for_js() {
     global $PAGE;
 
-    $PAGE->requires->strings_for_js(array('createpoodll',
-                                          'unpoodll',
-                                          'enterurl',
-                                          'insert',
+    $PAGE->requires->strings_for_js(array('insert',
                                           'cancel',
-                                          'dialogtitle',
-                                          'browserepositories',
-                                          'openinnewwindow'),
+                                          'dialogtitle'),
                                     'atto_poodll');
 }
 
@@ -49,13 +44,42 @@ function atto_poodll_strings_for_js() {
  * @return array of additional params to pass to javascript init function for this module.
  */
 function atto_poodll_params_for_js($elementid, $options, $fpoptions) {
-	global $USER;
-
-	//contextid
+	global $USER, $COURSE;
+	//coursecontext
+	$coursecontext=context_course::instance($COURSE->id);	
+	
+	//usercontextid
 	$usercontextid=context_user::instance($USER->id)->id;
+	$disabled=false;
+	
 	//config our array of data
 	$params = array();
 	$params['usercontextid'] = $usercontextid;
+
+		//If they don't have permission don't show it
+		if(!has_capability('atto/poodll:visible', $coursecontext) ){
+			$disabled=true;
+		 }
+		 
+		 //if this textarea allows no files, we also bail
+		 if (!isset($options['maxfiles']) || $options['maxfiles'] == 0) {
+                $disabled=true;
+        }
+        
+        //add our disabled param
+        $params['disabled'] = $disabled;
+	
+		//add icons to editor if the permissions are all ok
+		$recorders = array('audiomp3','audiored5','video','whiteboard','snapshot');
+		$allowedrecorders =  get_config('atto_poodll','recorderstoshow');
+		if(!empty($allowedrecorders)){
+			$allowedrecorders = explode(',',$allowedrecorders);
+			foreach($recorders as $recorder){
+				if((array_search('show_' . $recorder,$allowedrecorders)!==false) && has_capability('atto/poodll:allow' . $recorder, $coursecontext)){
+					$params[$recorder]=true;
+				}
+			}
+		}
 
     return $params;
 }
