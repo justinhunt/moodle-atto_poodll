@@ -133,7 +133,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
     						height=450;
     						break;
     		case 'whiteboard': width=680;
-    						height=480;
+    						height=540;
     						break;
     	}
 
@@ -142,7 +142,9 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
             width: width + 'px',
             focusAfterHide: therecorder
         });
-        //dialogue.width = width;
+        if(dialogue.width != width + 'px'){
+        	dialogue.set('width',width+'px');
+        }
 
         var iframe = Y.Node.create('<iframe></iframe>');
         iframe.setStyles({
@@ -243,7 +245,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
 			template = Y.Handlebars.compile(IMAGETEMPLATE);
             mediahtml = template({
                 url: filesrc,
-                alt: thefilename,
+                alt: thefilename
             });		
         //otherwise insert the link
 		}else{

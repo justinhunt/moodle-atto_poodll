@@ -51,8 +51,6 @@ $itemid = optional_param('itemid', '', PARAM_TEXT);
 $recorder = optional_param('recorder', '', PARAM_TEXT);
 $updatecontrol = optional_param('updatecontrol', '', PARAM_TEXT);
 
-
-
 //contextid
 $usercontextid=context_user::instance($USER->id)->id;
 $callbackjs = '';//'atto_poodll_button.updatefilename';
@@ -85,9 +83,7 @@ switch($recorder){
 
 $PAGE->set_pagelayout('embedded');
 $PAGE->set_title(get_string('dialogtitle', 'atto_poodll'));
-//$PAGE->set_heading('');
 $PAGE->requires->css(new moodle_url($CFG->wwwroot . '/lib/editor/atto/plugins/poodll/dialog/poodll.css'));
-//$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/lib/editor/atto/plugins/poodll/dialog/poodll.js'),true);
 $PAGE->requires->js(new moodle_url($CFG->wwwroot. '/filter/poodll/module.js'),true);
 
 
