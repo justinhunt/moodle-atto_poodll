@@ -14,7 +14,7 @@ v) snapshot
 They can be hidden or shown using the settings found at:
 site admin -> plugins -> text editors ->  Atto html editor -> poodll anywhere
 
-In some cases the Moodle text editor may be set to not allow uploaded files. Notably the question response area when using an essay question type, or in forum posts where attachments may be restricted or forbidden. In that situation we try to play nicely  and hide the PoodLL Anywhere icons. Using the Moodle capabilities system it is also possible to hide and
+In some cases the Moodle text editor may be set to not allow uploaded files. Notably the question response area when using an essay question type, or in forum posts where attachments may be restricted or forbidden. In that situation PoodLL Anywhere tries to play nicely and will hide the PoodLL Anywhere icons. Using the Moodle capabilities system it is also possible to hide and
 show icons depending on the user's role.
 
 The capabilities available to be set are:
@@ -33,7 +33,7 @@ administration -> notifications page and follow the prompts for Moodle to instal
 
 It will not appear on the Atto toolbar immediately and you will need to visit:
 Site administration / Plugins / Text editors / Atto HTML editor / Atto toolbar settings
-Beneath the list of plugins find the "Toolbar Config" textbox. There, probably on the "files" line add the word "poodll". 
+Right near the bottom of the page, beneath the list of plugins find the "Toolbar Config" textbox. There, probably on the "files" line add the word "poodll". 
 That line will then look like this:
 files = image, media, poodll, 
 
