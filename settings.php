@@ -43,4 +43,10 @@ if ($ADMIN->fulltree) {
 						   get_string('recorderstoshow', 'atto_poodll'),
 						   get_string('recorderstoshowdetails', 'atto_poodll'), $recoptiondefaults,$recoptions));	
 	
+	//PoodLL Whiteboard
+	$settings->add(new admin_setting_heading('atto_poodll/whiteboards', get_string('whiteboardheading', 'atto_poodll'), ''));
+	$wboptions = array('drawingboard' => 'Drawing Board(js)', 'literallycanvas' => 'Literally Canvas(js)','poodll' => 'PoodLL Whiteboard(Flash)');
+	$settings->add(new admin_setting_configselect('atto_poodll/usewhiteboard', get_string('usewhiteboard', 'atto_poodll'), '', 'drawingboard', $wboptions));
+
+	
 }

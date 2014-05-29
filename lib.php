@@ -68,6 +68,9 @@ function atto_poodll_params_for_js($elementid, $options, $fpoptions) {
         
         //add our disabled param
         $params['disabled'] = $disabled;
+        
+        //add our use whiteboard option
+        $params['usewhiteboard'] = get_config('atto_poodll','usewhiteboard');
 	
 		//add icons to editor if the permissions are all ok
 		$recorders = array('audiomp3','audiored5','video','whiteboard','snapshot');

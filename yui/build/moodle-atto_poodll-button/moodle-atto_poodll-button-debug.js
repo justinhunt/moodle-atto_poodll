@@ -76,12 +76,14 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      */
     _content: null,
     _currentrecorder: null,
-    _usercontextid: null,
     _itemid: null,
+    _usercontextid: null,
+    _usewhiteboard: null,
 
     initializer: function(config) {
-    
-        this._usercontextid = config.usercontextid;
+   		this._usercontextid = config.usercontextid;
+   		this._usewhiteboard = config.usewhiteboard;
+   		
         var host = this.get('host');
         var options = host.get('filepickeroptions');
         if (options.image && options.image.itemid) {
@@ -96,6 +98,22 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         if(config.disabled){
         	return;
         }
+      
+      /*  
+        var recorders = ['audiomp3','audiored5','video', 'whiteboard','snapshot'];
+         Y.Array.each(recorders, function(therecorder) {
+            // Add the poodll button first (if we are supposed to)
+			if(config.hasOwnProperty(recorders[therecorder])){
+				this.addButton({
+					icon: recorders[therecorder],
+					iconComponent: 'atto_poodll',
+					buttonName: recorders[therecorder],
+					callback: this._displayDialogue,
+					callbackArgs: recorders[therecorder]
+				});
+			}
+        }, this);
+        */
     
     	var recorders = new Array('audiomp3','audiored5','video', 'whiteboard','snapshot');
     	for (var therecorder = 0; therecorder < recorders.length; therecorder++) {
@@ -110,6 +128,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
 				});
 			}
         }
+        
        
     },
  
@@ -178,7 +197,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      */
     _getIframeURL: function(therecorder) {
         return M.cfg.wwwroot + '/lib/editor/atto/plugins/poodll/dialog/poodll.php?' + 
-          'itemid='+ this._itemid + '&recorder=' + therecorder + 
+          'itemid='+ this._itemid + '&recorder=' + therecorder + '&usewhiteboard=' + this._usewhiteboard  + 
           '&updatecontrol=' + this._getFilenameControlName();
     },
     
@@ -240,7 +259,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
          var mediahtml='';
            
 		   // It will store in mdl_question with the "@@PLUGINFILE@@/myfile.mp3" for the filepath.
-		   var filesrc =wwwroot+'/draftfile.php/'+ this._usercontextid +'/user/draft/'+this._itemid+'/'+thefilename;
+		   var filesrc =wwwroot+'/draftfile.php/'+  this._usercontextid +'/user/draft/'+this._itemid+'/'+thefilename;
 
 		//if this is an image, insert the image
 		if(this._currentrecorder==='snapshot' ||this._currentrecorder==='whiteboard'){
@@ -279,6 +298,13 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
 		
 		//console.log("just  updated: " + args[3] + ' with ' + args[2]);
 	}
+}, {
+    usercontextid: {
+        value: null
+    },
+    usewhiteboard: {
+        value: 'drawingboard'
+    }
 });
 
 

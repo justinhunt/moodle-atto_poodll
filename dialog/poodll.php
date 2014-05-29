@@ -50,6 +50,7 @@ $editor = get_texteditor('atto');
 $itemid = optional_param('itemid', '', PARAM_TEXT);
 $recorder = optional_param('recorder', '', PARAM_TEXT);
 $updatecontrol = optional_param('updatecontrol', '', PARAM_TEXT);
+$usewhiteboard = optional_param('usewhiteboard', 'drawingboard', PARAM_TEXT);
 
 //contextid
 $usercontextid=context_user::instance($USER->id)->id;
@@ -66,7 +67,7 @@ switch($recorder){
 	$instruction = get_string('snaptheninsert', 'atto_poodll');
  	break;
  case 'whiteboard':
- 	$recorderhtml =  fetchWhiteboardForSubmission($updatecontrol, $usercontextid,'user','draft',$itemid,400,350,"","",$callbackjs);
+ 	$recorderhtml =  fetchWhiteboardForSubmission($updatecontrol, $usercontextid,'user','draft',$itemid,400,350,"",$usewhiteboard,$callbackjs);
 	$recorderhtml = "<div class='jswhiteboard'>" . $recorderhtml . "</div>"; 
 	$instruction = get_string('drawtheninsert', 'atto_poodll');
  	break;
