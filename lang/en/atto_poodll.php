@@ -59,12 +59,9 @@ $string['insert'] = 'Insert';
 $string['cancel'] = 'Cancel';
 $string['whiteboardheading'] = 'Whiteboard';
 $string['usewhiteboard'] = 'Choose the whiteboard type:';
-
-/*
 $string['poodll:allowaudiomp3'] = 'Allow MP3 Recording';
 $string['poodll:allowaudiored5'] = 'Allow Audio(Red5) Recording';
 $string['poodll:allowwhiteboard'] = 'Allow Whiteboard';
 $string['poodll:allowvideo'] = 'Allow Video Recording';
 $string['poodll:allowsnapshot'] = 'Allow Snapshot';
 $string['poodll:visible'] = 'Visible';
-*/
