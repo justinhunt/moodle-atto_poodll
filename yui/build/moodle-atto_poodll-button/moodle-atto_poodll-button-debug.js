@@ -171,9 +171,11 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         iframe.setStyles({
             height: height + 'px',
             border: 'none',
-            width: '100%'
+            width: '100%',
+            overflow: 'hidden'
         });
         iframe.setAttribute('src', this._getIframeURL(therecorder));
+        iframe.setAttribute('scrolling', 'no');
         
         //append buttons to iframe
         var buttonform = this._getFormContent();
