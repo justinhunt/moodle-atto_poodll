@@ -35,7 +35,8 @@ function atto_poodll_strings_for_js() {
 
     $PAGE->requires->strings_for_js(array('insert',
                                           'cancel',
-                                          'dialogtitle'),
+                                          'dialogtitle',
+                                          'audiored5_desc','audiomp3_desc','video_desc','whiteboard_desc','snapshot_desc'),
                                     'atto_poodll');
 }
 

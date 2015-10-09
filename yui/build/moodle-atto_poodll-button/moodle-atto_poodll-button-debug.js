@@ -122,6 +122,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
 				this.addButton({
 					icon: recorders[therecorder],
 					iconComponent: 'atto_poodll',
+					title: recorders[therecorder] + '_desc',
 					buttonName: recorders[therecorder],
 					callback: this._displayDialogue,
 					callbackArgs: recorders[therecorder]

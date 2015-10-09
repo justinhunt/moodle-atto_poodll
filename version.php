@@ -24,11 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2014102100;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2015101000;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2014041100;        // Requires this Moodle version.
 $plugin->component = 'atto_poodll';  // Full name of the plugin (used for diagnostics).
-$plugin->maturity  = MATURITY_BETA;
-// Human readable version informatiomn
-$plugin->release   = '1.0.3 (Build 2014102100)';
+$plugin->maturity  = MATURITY_STABLE;
+// Human readable version information
+$plugin->release   = '1.0.4 (Build 2015101000)';
 $plugin->dependencies = array('filter_poodll' => 2014011500);
 
