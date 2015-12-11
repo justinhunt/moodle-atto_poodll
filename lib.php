@@ -24,8 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/filter/poodll/poodllresourcelib.php');
-
 /**
  * Initialise this plugin
  * @param string $elementid
