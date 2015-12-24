@@ -85,7 +85,7 @@ $PAGE->set_pagelayout('embedded');
 $PAGE->set_title(get_string('dialogtitle', 'atto_poodll'));
 $PAGE->requires->css(new moodle_url($CFG->wwwroot . '/lib/editor/atto/plugins/poodll/dialog/poodll.css'));
 $PAGE->requires->js(new moodle_url($CFG->wwwroot. '/filter/poodll/module.js'),true);
-
+$PAGE->requires->jquery();
 
 echo $OUTPUT->header();
 ?>
