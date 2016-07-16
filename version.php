@@ -24,11 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015121102;
+$plugin->version   = 2016071501;
 $plugin->requires  = 2015051100;
 $plugin->component = 'atto_poodll';  // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
 // Human readable version information
-$plugin->release   = '1.0.6 (Build 2015121102)';
+$plugin->release   = '1.1.0 (Build 2016071501)';
 $plugin->dependencies = array('filter_poodll' => 2015121101);
 
