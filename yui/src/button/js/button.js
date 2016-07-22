@@ -15,7 +15,7 @@
 
 /*
  * @package    atto_poodll
- * @copyright  2013 Damyon Wiese  <damyon@moodle.com>
+ * @copyright  2016 Justin Hunt  <justin@poodll.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -197,13 +197,15 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         	dialogue.set('width',width+'px');
         }
 
-        var iframe = Y.Node.create('<iframe></iframe>');
+        var iframe = Y.Node.create('<div class="atto_poodll_iframe_container"><iframe></iframe></div>');
+		/*
         iframe.setStyles({
             height: height + 'px',
             border: 'none',
             width: '100%',
             overflow: 'hidden'
         });
+		*/
         iframe.setAttribute('src', this._getIframeURL(therecorder));
         iframe.setAttribute('scrolling', 'no');
         
