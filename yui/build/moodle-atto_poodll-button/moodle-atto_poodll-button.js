@@ -17,7 +17,7 @@ YUI.add('moodle-atto_poodll-button', function (Y, NAME) {
 
 /*
  * @package    atto_poodll
- * @copyright  2013 Damyon Wiese  <damyon@moodle.com>
+ * @copyright  2016 Justin Hunt  <justin@poodll.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -187,7 +187,8 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
     						height=540;
     						break;
     	}
-
+    	
+		//the dialogue widths are a bit bogus
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
             width: width + 'px',
@@ -197,28 +198,62 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         	dialogue.set('width',width+'px');
         }
 
-        var iframe = Y.Node.create('<iframe></iframe>');
+        var iframe = Y.Node.create('<iframe width="300px" height="150px"></iframe>');
         iframe.setStyles({
-            height: height + 'px',
             border: 'none',
-            width: '100%',
             overflow: 'hidden'
         });
+	
+		var thisthis = this;
+		iframe.on('load',
+			 function(e){
+				var theiframe=e.target;
+				
+				if(theiframe){
+					//set timeout function to handle the initial resize
+					setTimeout(thisthis._iframeResize,50,theiframe);	
+				}//end of if theiframe
+			}//end of onload inline function
+		); //end of on load
+		
+		//set attributes on the iframe
         iframe.setAttribute('src', this._getIframeURL(therecorder));
         iframe.setAttribute('scrolling', 'no');
         
         //append buttons to iframe
         var buttonform = this._getFormContent();
         
-        var bodycontent =  Y.Node.create('<div></div>');
+        var bodycontent =  Y.Node.create('<div class="atto_poodll_iframe_container"></div>');
         bodycontent.append(iframe).append(buttonform);
-       // iframe.append(iform);
+
         //set to bodycontent
         dialogue.set('bodyContent', bodycontent);
         dialogue.show();
         this.markUpdated();
     },
-    
+
+
+      /**
+     * Scan for resize of iframe content and resize iframe
+     *
+     * @param _theframe
+     * @return null
+     * @private
+     */
+     _iframeResize: function(theiframe){
+          var newheight=150;
+          var newwidth=300;   
+		  if(theiframe){
+			  newheight=theiframe.get('contentWindow').get('document').get('body').get('scrollHeight');
+			  newwidth=theiframe.get('contentWindow').get('document').get('body').get('scrollWidth');
+		   }
+		   if(newheight>150){
+				theiframe.setAttribute('height',(newheight + 40) + "px");
+				theiframe.setAttribute("width", (newwidth) + "px");
+		  }else{
+			setTimeout(this._iframeResize,100,theiframe);
+		  }
+    },
 
     /**
      * Returns the URL to the file manager.
