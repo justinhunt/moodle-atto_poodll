@@ -171,7 +171,8 @@ function atto_poodll_widgets_params_for_js()
 			$tempvar = array_shift($uniquevariables);
 			if (strpos($tempvar, 'COURSE:') === false
 				&& strpos($tempvar, 'USER:') === false
-				&& strpos($tempvar, 'DATASET') === false
+				&& strpos($tempvar, 'DATASET:') === false
+				&& strpos($tempvar, 'URLPARAM:') === false
 				&& $tempvar != 'MOODLEPAGEID' 
 				&& $tempvar != 'WWWROOT' 
 				&& $tempvar != 'AUTOID') {
