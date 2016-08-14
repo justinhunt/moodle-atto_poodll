@@ -200,26 +200,15 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         	dialogue.set('width',width+'px');
         }
 
-        var iframe = Y.Node.create('<iframe width="300px" height="150px"></iframe>');
+        var iframeid = 'atto_poodll_dialog_iframe_' + new Date().getTime();
+        var iframe = Y.Node.create('<iframe id="' + iframeid + '"width="300px" height="150px"></iframe>');
         iframe.setStyles({
             border: 'none',
             overflow: 'hidden'
         });
-	
-		var thisthis = this;
-		iframe.on('load',
-			 function(e){
-				var theiframe=e.target;
-				
-				if(theiframe){
-					//set timeout function to handle the initial resize
-					setTimeout(thisthis._iframeResize,50,theiframe);	
-				}//end of if theiframe
-			}//end of onload inline function
-		); //end of on load
-		
-		//set attributes on the iframe
-        iframe.setAttribute('src', this._getIframeURL(therecorder));
+
+	//set attributes on the iframe
+        iframe.setAttribute('src', this._getIframeURL(therecorder, iframeid));
         iframe.setAttribute('scrolling', 'no');
         
         //append buttons to iframe
@@ -234,39 +223,17 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         this.markUpdated();
     },
 
-
-      /**
-     * Scan for resize of iframe content and resize iframe
-     *
-     * @param _theframe
-     * @return null
-     * @private
-     */
-     _iframeResize: function(theiframe){
-          var newheight=150;
-          var newwidth=300;   
-		  if(theiframe){
-			  newheight=theiframe.get('contentWindow').get('document').get('body').get('scrollHeight');
-			  newwidth=theiframe.get('contentWindow').get('document').get('body').get('scrollWidth');
-		   }
-		   if(newheight>150){
-				theiframe.setAttribute('height',(newheight + 40) + "px");
-				theiframe.setAttribute("width", (newwidth) + "px");
-		  }else{
-			setTimeout(this._iframeResize,100,theiframe);
-		  }
-    },
-
-    /**
+    /** 
      * Returns the URL to the file manager.
      *
      * @param _getIframeURL
      * @return {String} URL
      * @private
      */
-    _getIframeURL: function(therecorder) {
+    _getIframeURL: function(therecorder, iframeid) {
         return M.cfg.wwwroot + '/lib/editor/atto/plugins/poodll/dialog/poodll.php?' + 
           'itemid='+ this._itemid + '&recorder=' + therecorder + '&usewhiteboard=' + this._usewhiteboard  + 
+          '&iframeid=' + iframeid +
           '&updatecontrol=' + this._getFilenameControlName();
     },
     

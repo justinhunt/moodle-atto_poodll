@@ -46,6 +46,7 @@ if (isset($SESSION->lang)) {
 require_login();  // CONTEXT_SYSTEM level.
 $editor = get_texteditor('atto');
 //$plugin = $editor->get_plugin('poodll');
+$iframeid = optional_param('iframeid', 'none', PARAM_TEXT);
 $itemid = optional_param('itemid', '', PARAM_TEXT);
 $recorder = optional_param('recorder', '', PARAM_TEXT);
 $updatecontrol = optional_param('updatecontrol', '', PARAM_TEXT);
@@ -86,6 +87,9 @@ $PAGE->set_title(get_string('dialogtitle', 'atto_poodll'));
 $PAGE->requires->css(new moodle_url($CFG->wwwroot . '/lib/editor/atto/plugins/poodll/dialog/poodll.css'));
 $PAGE->requires->js(new moodle_url($CFG->wwwroot. '/filter/poodll/module.js'),true);
 $PAGE->requires->jquery();
+
+//load our resize script
+$PAGE->requires->js_call_amd("filter_poodll/responsiveiframe", 'init', array(array('iframeid' => $iframeid)));
 
 echo $OUTPUT->header();
 ?>

@@ -1,5 +1,8 @@
 Change List
 =========
+Version 2016081401
+Tweaks to support auto iframe resizing
+
 Version 2015121102
 Added jquery so that the drawingboard.js doesn't fail
 
