@@ -1,5 +1,8 @@
 Change List
 =========
+Version 2016081402
+Added new html5 snapshot maker
+
 Version 2016081401
 Tweaks to support auto iframe resizing
 

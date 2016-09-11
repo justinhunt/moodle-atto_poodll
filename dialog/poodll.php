@@ -63,7 +63,7 @@ switch($recorder){
 	$instruction = get_string('recordtheninsert', 'atto_poodll');
  	break;
  case 'snapshot':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchSnapshotCameraforSubmission($updatecontrol, "apic.jpg",350,400,$usercontextid,'user','draft',$itemid,$callbackjs);
+ 	$recorderhtml =  \filter_poodll\poodlltools::fetchHTML5SnapshotCamera($updatecontrol,350,400,$usercontextid,'user','draft',$itemid,$callbackjs);
 	$instruction = get_string('snaptheninsert', 'atto_poodll');
  	break;
  case 'whiteboard':
