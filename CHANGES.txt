@@ -1,5 +1,9 @@
 Change List
 =========
+Version 2016112701
+Updated styles of widget dialog
+removed option to select the good ol poodll flash whiteboard
+
 Version 2016081402
 Added new html5 snapshot maker
 
