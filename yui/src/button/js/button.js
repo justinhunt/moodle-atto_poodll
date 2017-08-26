@@ -199,7 +199,9 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         }
 
         var iframeid = 'atto_poodll_dialog_iframe_' + new Date().getTime();
-        var iframe = Y.Node.create('<iframe id="' + iframeid + '"width="300px" height="150px"></iframe>');
+        //var iframe = Y.Node.create('<iframe id="' + iframeid + '"width="300px" height="150px"></iframe>');
+        var iframe = Y.Node.create('<iframe id="' + iframeid + '"width="' + width + 'px" height="' + height +  'px"></iframe>');
+        
         iframe.setStyles({
             border: 'none',
             overflow: 'hidden'

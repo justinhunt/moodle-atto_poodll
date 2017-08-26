@@ -55,15 +55,16 @@ $usewhiteboard = optional_param('usewhiteboard', 'drawingboard', PARAM_TEXT);
 //contextid
 $usercontextid=context_user::instance($USER->id)->id;
 $callbackjs = '';//'atto_poodll_button.updatefilename';
+$hints= new Array('size'=>'small');
 
 // Load the recorder.
 switch($recorder){
  case 'video':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchVideoRecorderForSubmission('auto', 'none', $updatecontrol, $usercontextid,'user','draft',$itemid,0,$callbackjs);
+ 	$recorderhtml =  \filter_poodll\poodlltools::fetchVideoRecorderForSubmission('auto', 'none', $updatecontrol, $usercontextid,'user','draft',$itemid,0,$callbackjs,$hints);
 	$instruction = get_string('recordtheninsert', 'atto_poodll');
  	break;
  case 'snapshot':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchHTML5SnapshotCamera($updatecontrol,350,400,$usercontextid,'user','draft',$itemid,$callbackjs);
+ 	$recorderhtml =  \filter_poodll\poodlltools::fetchHTML5SnapshotCamera($updatecontrol,350,400,$usercontextid,'user','draft',$itemid,$callbackjs,$hints);
 	$instruction = get_string('snaptheninsert', 'atto_poodll');
  	break;
  case 'whiteboard':
@@ -73,12 +74,12 @@ switch($recorder){
  	break;
  case 'audiored5':
  	$recorderhtml =  \filter_poodll\poodlltools::fetchAudioRecorderForSubmission('auto', 'none', $updatecontrol,
-				$usercontextid,'user','draft',$itemid,0,$callbackjs);
+				$usercontextid,'user','draft',$itemid,0,$callbackjs,$hints);
 	$instruction = get_string('recordtheninsert', 'atto_poodll');
  	break; 		
  case 'audiomp3':
  default:
-	$recorderhtml =  \filter_poodll\poodlltools::fetchMP3RecorderForSubmission($updatecontrol, $usercontextid ,'user','draft',$itemid,0,$callbackjs);
+	$recorderhtml =  \filter_poodll\poodlltools::fetchMP3RecorderForSubmission($updatecontrol, $usercontextid ,'user','draft',$itemid,0,$callbackjs,$hints);
 	$instruction = get_string('recordtheninsert', 'atto_poodll');
 }
 
@@ -89,7 +90,8 @@ $PAGE->requires->js(new moodle_url($CFG->wwwroot. '/filter/poodll/module.js'),tr
 $PAGE->requires->jquery();
 
 //load our resize script
-$PAGE->requires->js_call_amd("filter_poodll/responsiveiframe", 'init', array(array('iframeid' => $iframeid)));
+//lets disable this ...JUSTIN 20170826
+//$PAGE->requires->js_call_amd("filter_poodll/responsiveiframe", 'init', array(array('iframeid' => $iframeid)));
 
 echo $OUTPUT->header();
 ?>
