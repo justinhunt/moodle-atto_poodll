@@ -55,7 +55,7 @@ $usewhiteboard = optional_param('usewhiteboard', 'drawingboard', PARAM_TEXT);
 //contextid
 $usercontextid=context_user::instance($USER->id)->id;
 $callbackjs = '';//'atto_poodll_button.updatefilename';
-$hints= new Array('size'=>'small');
+$hints= Array('size'=>'small');
 
 // Load the recorder.
 switch($recorder){

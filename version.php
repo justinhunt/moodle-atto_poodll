@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016112702;
+$plugin->version   = 2016112703;
 $plugin->requires  = 2016052300;//moodle 3.1.0
 $plugin->component = 'atto_poodll';  // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
