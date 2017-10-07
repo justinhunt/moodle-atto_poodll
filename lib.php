@@ -56,7 +56,11 @@ function atto_poodll_params_for_js($elementid, $options, $fpoptions) {
 	$coursecontext=context_course::instance($COURSE->id);	
 	
 	//usercontextid
-	$usercontextid=context_user::instance($USER->id)->id;
+    if($USER->id ==0){
+        $usercontextid=0;
+    }else {
+        $usercontextid = context_user::instance($USER->id)->id;
+    }
 	$disabled=false;
 	
 	//config our array of data
