@@ -51,11 +51,19 @@ $itemid = optional_param('itemid', '', PARAM_TEXT);
 $recorder = optional_param('recorder', '', PARAM_TEXT);
 $updatecontrol = optional_param('updatecontrol', '', PARAM_TEXT);
 $usewhiteboard = optional_param('usewhiteboard', 'drawingboard', PARAM_TEXT);
+$coursecontextid = optional_param('coursecontextid', 0, PARAM_INT);
+$modulecontextid = optional_param('modulecontextid', 0, PARAM_INT);
 
 //contextid
 $usercontextid=context_user::instance($USER->id)->id;
 $callbackjs = '';//'atto_poodll_button.updatefilename';
 $hints= Array('size'=>'small');
+if($coursecontextid){
+	$hints['coursecontextid']=$coursecontextid;
+}
+if($modulecontextid){
+	$hints['modulecontextid']=$modulecontextid;
+}
 
 // Load the recorder.
 switch($recorder){
