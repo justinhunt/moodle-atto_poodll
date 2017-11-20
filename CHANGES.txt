@@ -1,5 +1,8 @@
 Change List
 =========
+Version 2017112001
+Fixed an incorrect path in dialog.php
+
 Version 2017100301
 Added a check for 0 id user when fetching usercontextid
 

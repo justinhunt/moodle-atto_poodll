@@ -32,7 +32,7 @@
  */
 
 define('NO_MOODLE_COOKIES', false);
-require(__DIR__ . '../../../../../../../config.php');
+require(__DIR__ . '/../../../../../../config.php');
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/lib/editor/atto/plugins/poodll/dialog/poodll.php');
