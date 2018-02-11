@@ -28,7 +28,7 @@ Atto/poodll:allowsnapshot
 Installation
 ===============
 Install PoodLL anywhere by unzipping it and putting the "poodll" folder in
-[moodle]/lib/editors/Atto/plugins  then visit your site
+[moodle]/lib/editor/atto/plugins  then visit your site
 administration -> notifications page and follow the prompts for Moodle to install it.
 
 It will not appear on the Atto toolbar immediately and you will need to visit:
