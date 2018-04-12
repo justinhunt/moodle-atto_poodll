@@ -15,19 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto PoodLL Anywhere version file.
+ * Privacy Subsystem implementation for Atto Poodll.
  *
  * @package    atto_poodll
- * @copyright  2013 Justin Hunt <poodllsupport@gmail.com>
+ * @copyright  2018 Justin Hunt https://poodll.com
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace atto_media\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018041000;
-$plugin->requires  = 2016052300;//moodle 3.1.0
-$plugin->component = 'atto_poodll';  // Full name of the plugin (used for diagnostics).
-$plugin->maturity  = MATURITY_STABLE;
-// Human readable version information
-$plugin->release   = '3.1.0 (Build 2018041000)';
-$plugin->dependencies = array('filter_poodll' => 2016081401);
+/**
+ * Privacy Subsystem for atto_poodll implementing null_provider.
+ *
+ * @copyright  2018 Justin Hunt https://poodll.com
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() {
+        return 'privacy:metadata';
+    }
+}
