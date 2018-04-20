@@ -68,3 +68,4 @@ $string['poodll:allowvideo'] = 'Allow Video Recording';
 $string['poodll:allowsnapshot'] = 'Allow Snapshot';
 $string['poodll:allowwidgets'] = 'Allow Widgets';
 $string['poodll:visible'] = 'Visible';
+$string['privacy:metadata'] = 'The atto_poodll plugin does not store any personal data.';
