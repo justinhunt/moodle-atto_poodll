@@ -1,5 +1,8 @@
 Change List
 =========
+Version 3.1.1(Build 2018090300)
+-Added support for Cloud Poodll API token
+
 Version 3.1.0(Build 2018041000)
 -Implemented new Moodle Privacy API
 

@@ -182,8 +182,8 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
     	var height=260;
     	switch(therecorder){
     		case 'audiomp3': 
-                width=360;
-                height=260;
+                width=390;
+                height=300;
                 break;
     		case 'video': 
     		case 'snapshot':width=360;

@@ -183,7 +183,8 @@ function atto_poodll_widgets_params_for_js()
 				&& strpos($tempvar, 'URLPARAM:') === false
 				&& $tempvar != 'MOODLEPAGEID' 
 				&& $tempvar != 'WWWROOT' 
-				&& $tempvar != 'AUTOID') {
+				&& $tempvar != 'AUTOID'
+                && $tempvar != 'CLOUDPOODLLTOKEN') {
 				$usevariables[] = $tempvar;
 			}
 		}

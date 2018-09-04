@@ -83,6 +83,7 @@ switch($recorder){
  case 'audiored5':
  case 'audiomp3':
  default:
+    $hints['size'] ='auto';
 	$recorderhtml =  \filter_poodll\poodlltools::fetchMP3RecorderForSubmission($updatecontrol, $usercontextid ,'user','draft',$itemid,0,$callbackjs,$hints);
 	$instruction = get_string('recordtheninsert', 'atto_poodll');
 }
