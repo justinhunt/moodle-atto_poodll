@@ -1,5 +1,9 @@
 Change List
 =========
+Version 3.1.2(Build 2019071300)
+-Fixed default permission for authenticated user
+
+
 Version 3.1.1(Build 2018090300)
 -Added support for Cloud Poodll API token
 

@@ -36,62 +36,60 @@ var POODLLFILENAME = 'poodllfilename';
 var LOGNAME = 'atto_poodll';
 
 
-
 var CSS = {
-        INPUTSUBMIT: 'atto_media_urlentrysubmit',
-        INPUTCANCEL: 'atto_media_urlentrycancel',
-        NAMEBUTTON: 'atto_poodll_templatebutton',
-        HEADERTEXT: 'atto_poodll_headertext',
-        INSTRUCTIONSTEXT: 'atto_poodll_instructionstext',
-        TEMPLATEVARIABLE: 'atto_poodll_templatevariable'     
-    };
+    INPUTSUBMIT: 'atto_media_urlentrysubmit',
+    INPUTCANCEL: 'atto_media_urlentrycancel',
+    NAMEBUTTON: 'atto_poodll_templatebutton',
+    HEADERTEXT: 'atto_poodll_headertext',
+    INSTRUCTIONSTEXT: 'atto_poodll_instructionstext',
+    TEMPLATEVARIABLE: 'atto_poodll_templatevariable'
+};
 
 var TEMPLATE = '' +
-  '<form class="atto_form">' +
-   '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-   '<input id="{{elementid}}_{{poodllfilename}}" type="hidden" name="{{elementid}}_{{poodllfilename}}" />' +
-	'<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
+    '<form class="atto_form">' +
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
+    '<input id="{{elementid}}_{{poodllfilename}}" type="hidden" name="{{elementid}}_{{poodllfilename}}" />' +
+    '<button class="{{CSS.INPUTSUBMIT}}">{{get_string "insert" component}}</button>' +
     '</div>' +
-	'</form>';
+    '</form>';
 
 var IMAGETEMPLATE = '' + '<img src="{{url}}" alt="{{alt}}"/>';
 
 var FIELDSHEADERTEMPLATE = '' +
-        '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-            '<h4 class="' + CSS.HEADERTEXT + '">{{headertext}} {{key}}</h4>' +
-            '<div class="' + CSS.INSTRUCTIONSTEXT + '">{{instructions}}</div>' +
-        '</div>';
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
+    '<h4 class="' + CSS.HEADERTEXT + '">{{headertext}} {{key}}</h4>' +
+    '<div class="' + CSS.INSTRUCTIONSTEXT + '">{{instructions}}</div>' +
+    '</div>';
 
 var BUTTONSHEADERTEMPLATE = '' +
-        '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-            '<h4 class="' + CSS.HEADERTEXT + '">{{headertext}}</h4>' +
-        '</div>';
-        
-var BUTTONTEMPLATE = '' +
-        '<div id="{{elementid}}_{{innerform}}" class="atto_widget_buttons mdl-align">' +
-            '<button class="' + CSS.NAMEBUTTON + '_{{templateindex}}">{{name}}</button>' +
-        '</div>';
-		
-var FIELDTEMPLATE = '' +
-        '<div id="{{elementid}}_{{innerform}}" class="mdl-align">{{variable}}' +
-            '&nbsp;<input type="text" class="' + CSS.TEMPLATEVARIABLE + '_{{variableindex}} atto_widget_field" value="{{defaultvalue}}"></input>' +
-        '</div>';
-var SELECTCONTAINERTEMPLATE = '' +
-            '<div id="{{elementid}}_{{innerform}}" class="mdl-align">{{variable}}</div>';
-			
-var SELECTTEMPLATE = '' +
-            '<select class="' + CSS.TEMPLATEVARIABLE + '_{{variableindex}} atto_widget_field"></select>';
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
+    '<h4 class="' + CSS.HEADERTEXT + '">{{headertext}}</h4>' +
+    '</div>';
 
-var OPTIONTEMPLATE ='' +
-		'<option value="{{option}}">{{option}}</option>';
+var BUTTONTEMPLATE = '' +
+    '<div id="{{elementid}}_{{innerform}}" class="atto_widget_buttons mdl-align">' +
+    '<button class="' + CSS.NAMEBUTTON + '_{{templateindex}}">{{name}}</button>' +
+    '</div>';
+
+var FIELDTEMPLATE = '' +
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">{{variable}}' +
+    '&nbsp;<input type="text" class="' + CSS.TEMPLATEVARIABLE + '_{{variableindex}} atto_widget_field" value="{{defaultvalue}}"></input>' +
+    '</div>';
+var SELECTCONTAINERTEMPLATE = '' +
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">{{variable}}</div>';
+
+var SELECTTEMPLATE = '' +
+    '<select class="' + CSS.TEMPLATEVARIABLE + '_{{variableindex}} atto_widget_field"></select>';
+
+var OPTIONTEMPLATE = '' +
+    '<option value="{{option}}">{{option}}</option>';
 
 var SUBMITTEMPLATE = '' +
-  '<form class="atto_form">' +
-   '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-	'<button class="' + CSS.INPUTSUBMIT +'">{{inserttext}}</button>' +
+    '<form class="atto_form">' +
+    '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
+    '<button class="' + CSS.INPUTSUBMIT + '">{{inserttext}}</button>' +
     '</div>' +
-	'</form>';
-
+    '</form>';
 
 
 Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
@@ -121,107 +119,109 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
     _modulecontextid: null,
     _usewhiteboard: null,
 
-    initializer: function(config) {
-   		this._usercontextid = config.usercontextid;
-   		this._coursecontextid = config.coursecontextid;
-   		this._usewhiteboard = config.usewhiteboard;
-   		
+    initializer: function (config) {
+        this._usercontextid = config.usercontextid;
+        this._coursecontextid = config.coursecontextid;
+        this._usewhiteboard = config.usewhiteboard;
+
         var host = this.get('host');
         var options = host.get('filepickeroptions');
         if (options.image && options.image.itemid) {
-            this._itemid =  options.image.itemid;
+            this._itemid = options.image.itemid;
             if (options.image.context && options.image.context.id) {
-            	this._modulecontextid = options.image.context.id;
+                this._modulecontextid = options.image.context.id;
             }
         } else {
             Y.log('Plugin PoodLL Anywhere not available because itemid is missing.',
-                    'warn', LOGNAME);
+                'warn', LOGNAME);
             return;
         }
-        
+
         //if we don't have the capability, or no file uploads allowed, give up.
-        if(config.disabled){
-        	return;
+        if (config.disabled) {
+            return;
         }
-      
-     
-    	var recorders = new Array('audiomp3','video', 'whiteboard','snapshot','widgets');
-    	for (var therecorder = 0; therecorder < recorders.length; therecorder++) {
-			// Add the poodll button first (if we are supposed to)
-			if(config.hasOwnProperty(recorders[therecorder])){
-				this.addButton({
-					icon: recorders[therecorder],
-					iconComponent: 'atto_poodll',
-					title: recorders[therecorder] + '_desc',
-					buttonName: recorders[therecorder],
-					callback: this._displayDialogue,
-					callbackArgs: recorders[therecorder]
-				});
-			}
+
+
+        var recorders = new Array('audiomp3', 'video', 'whiteboard', 'snapshot', 'widgets');
+        for (var therecorder = 0; therecorder < recorders.length; therecorder++) {
+            // Add the poodll button first (if we are supposed to)
+            if (config.hasOwnProperty(recorders[therecorder])) {
+                this.addButton({
+                    icon: recorders[therecorder],
+                    iconComponent: 'atto_poodll',
+                    title: recorders[therecorder] + '_desc',
+                    buttonName: recorders[therecorder],
+                    callback: this._displayDialogue,
+                    callbackArgs: recorders[therecorder]
+                });
+            }
         }
-        
-       
+
+
     },
- 
-     /**
+
+    /**
      * Display the PoodLL Recorder files.
      *
      * @method _displayDialogue
      * @private
      */
-    _displayDialogue: function(e, therecorder) {
-    	e.preventDefault();
-    	this._currentrecorder = therecorder;
-    	
-    	if(therecorder=='widgets'){
-    		this._displayWidgetsDialogue(e,therecorder);
-    		return;
-    	}
-    	
-    	var width=400;
-    	var height=260;
-    	switch(therecorder){
-    		case 'audiomp3': 
-                width=390;
-                height=300;
+    _displayDialogue: function (e, therecorder) {
+        e.preventDefault();
+        this._currentrecorder = therecorder;
+
+        if (therecorder == 'widgets') {
+            this._displayWidgetsDialogue(e, therecorder);
+            return;
+        }
+
+        var width = 400;
+        var height = 260;
+        switch (therecorder) {
+            case 'audiomp3':
+                width = 390;
+                height = 300;
                 break;
-    		case 'video': 
-    		case 'snapshot':width=360;
-    						height=450;
-    						break;
-    		case 'whiteboard': width=680;
-    						height=540;
-    						break;
-    	}
-    	
-		//the dialogue widths are a bit bogus
+            case 'video':
+            case 'snapshot':
+                width = 360;
+                height = 450;
+                break;
+            case 'whiteboard':
+                width = 680;
+                height = 540;
+                break;
+        }
+
+        //the dialogue widths are a bit bogus
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
             width: width + 'px',
             focusAfterHide: therecorder
         });
-        if(dialogue.width != width + 'px'){
-        	dialogue.set('width',width + 30 +'px');
+        if (dialogue.width != width + 'px') {
+            dialogue.set('width', width + 30 + 'px');
         }
 
         var iframeid = 'atto_poodll_dialog_iframe_' + new Date().getTime();
         //var iframe = Y.Node.create('<iframe id="' + iframeid + '" width="300px" height="150px"></iframe>');
-       // var iframe = Y.Node.create('<iframe id="' + iframeid + '" width="auto" height="' + height +  'px"></iframe>');
-        var iframe = Y.Node.create('<iframe id="' + iframeid + '" width="' + width +  'px" height="' + height +  'px"></iframe>');
-        
+        // var iframe = Y.Node.create('<iframe id="' + iframeid + '" width="auto" height="' + height +  'px"></iframe>');
+        var iframe = Y.Node.create('<iframe id="' + iframeid + '" width="' + width + 'px" height="' + height + 'px"></iframe>');
+
         iframe.setStyles({
             border: 'none',
             overflow: 'hidden'
         });
 
-	//set attributes on the iframe
+        //set attributes on the iframe
         iframe.setAttribute('src', this._getIframeURL(therecorder, iframeid));
         iframe.setAttribute('scrolling', 'no');
-        
+
         //append buttons to iframe
         var buttonform = this._getFormContent();
-        
-        var bodycontent =  Y.Node.create('<div class="atto_poodll_iframe_container"></div>');
+
+        var bodycontent = Y.Node.create('<div class="atto_poodll_iframe_container"></div>');
         bodycontent.append(iframe).append(buttonform);
 
         //set to bodycontent
@@ -230,21 +230,21 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         this.markUpdated();
     },
 
-    /** 
+    /**
      * Returns the URL to the file manager.
      *
      * @param _getIframeURL
      * @return {String} URL
      * @private
      */
-    _getIframeURL: function(therecorder, iframeid) {
-        return M.cfg.wwwroot + '/lib/editor/atto/plugins/poodll/dialog/poodll.php?' + 
-          'itemid='+ this._itemid + '&recorder=' + therecorder + '&usewhiteboard=' + this._usewhiteboard  + 
-          '&iframeid=' + iframeid + '&coursecontextid=' + this._coursecontextid + '&modulecontextid=' + this._modulecontextid +
-          '&updatecontrol=' + this._getFilenameControlName();
+    _getIframeURL: function (therecorder, iframeid) {
+        return M.cfg.wwwroot + '/lib/editor/atto/plugins/poodll/dialog/poodll.php?' +
+            'itemid=' + this._itemid + '&recorder=' + therecorder + '&usewhiteboard=' + this._usewhiteboard +
+            '&iframeid=' + iframeid + '&coursecontextid=' + this._coursecontextid + '&modulecontextid=' + this._modulecontextid +
+            '&updatecontrol=' + this._getFilenameControlName();
     },
-    
-        /**
+
+    /**
      * Return the dialogue content for the tool, attaching any required
      * events.
      *
@@ -252,7 +252,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getFormContent: function() {
+    _getFormContent: function () {
         var template = Y.Handlebars.compile(TEMPLATE),
             content = Y.Node.create(template({
                 elementid: this.get('host').get('elementid'),
@@ -266,92 +266,94 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         return content;
     },
 
-	
-        /**
+
+    /**
      * Get the id of the filename control where poodll stores filename
      *
      * @method _getFilenameControlName
      * @return {String} the name/id of the filename form field
      * @private
      */
-	_getFilenameControlName: function(){
-		return(this.get('host').get('elementid') + '_' + POODLLFILENAME);
-	},
-	
-	
-        /**
+    _getFilenameControlName: function () {
+        return (this.get('host').get('elementid') + '_' + POODLLFILENAME);
+    },
+
+
+    /**
      * Inserts the url/link onto the page
      * @method _getDialogueContent
      * @private
      */
-	_doInsert : function(e){
-		e.preventDefault();
-		this.getDialogue({
+    _doInsert: function (e) {
+        e.preventDefault();
+        this.getDialogue({
             focusAfterHide: null
         }).hide();
-        
+
         var thefilename = document.getElementById(this._getFilenameControlName());
         //if no file is there to insert, don't do it
-        if(!thefilename.value){
-        	Y.log('No filename control or value could be found.','warn', LOGNAME);
-        	return;
+        if (!thefilename.value) {
+            Y.log('No filename control or value could be found.', 'warn', LOGNAME);
+            return;
         }
 
-         var thefilename = thefilename.value;
-         var wwwroot = M.cfg.wwwroot;
-         var mediahtml='';
-           
-		   // It will store in mdl_question with the "@@PLUGINFILE@@/myfile.mp3" for the filepath.
-		   var filesrc =wwwroot+'/draftfile.php/'+  this._usercontextid +'/user/draft/'+this._itemid+'/'+thefilename;
+        var thefilename = thefilename.value;
+        var wwwroot = M.cfg.wwwroot;
+        var mediahtml = '';
 
-		//if this is an image, insert the image
-		if(this._currentrecorder==='snapshot' ||this._currentrecorder==='whiteboard'){
-			template = Y.Handlebars.compile(IMAGETEMPLATE);
+        // It will store in mdl_question with the "@@PLUGINFILE@@/myfile.mp3" for the filepath.
+        var filesrc = wwwroot + '/draftfile.php/' + this._usercontextid + '/user/draft/' + this._itemid + '/' + thefilename;
+
+        //if this is an image, insert the image
+        if (this._currentrecorder === 'snapshot' || this._currentrecorder === 'whiteboard') {
+            template = Y.Handlebars.compile(IMAGETEMPLATE);
             mediahtml = template({
                 url: filesrc,
                 alt: thefilename
-            });		
-        //otherwise insert the link
-		}else{
-			mediahtml = '<a href="'+filesrc+'">'+thefilename+'</a>';
-		}
+            });
+            //otherwise insert the link
+        } else {
+            mediahtml = '<a href="' + filesrc + '">' + thefilename + '</a>';
+        }
 
-		this.editor.focus();
-		this.get('host').insertContentAtFocusPoint(mediahtml);
-		this.markUpdated();
-		
-	},
+        this.editor.focus();
+        this.get('host').insertContentAtFocusPoint(mediahtml);
+        this.markUpdated();
 
-	    /**
+    },
+
+    /**
      * Called by PoodLL recorders directly to update filename field on page
      * @method updatefilename
      * @public
      */
-	updatefilename : function(args) {
-		//record the url on the html page						
-		//var filenamecontrol = document.getElementById(args[3]);
-		var filenamecontrol = document.getElementById(this._getFilenameControlName());
-		if(filenamecontrol===null){ filenamecontrol = parent.document.getElementById(args[3]);} 			
-		if(filenamecontrol){
-			filenamecontrol.value = args[2];
-			//var insertbutton = document.getElementById('insert');
-			 this._form.one('.' + CSS.INPUTSUBMIT).disabled=false;
-			//insertbutton.disabled = false;
-		}
-		
-		//console.log("just  updated: " + args[3] + ' with ' + args[2]);
-	},
-	
-	
-	/**
+    updatefilename: function (args) {
+        //record the url on the html page
+        //var filenamecontrol = document.getElementById(args[3]);
+        var filenamecontrol = document.getElementById(this._getFilenameControlName());
+        if (filenamecontrol === null) {
+            filenamecontrol = parent.document.getElementById(args[3]);
+        }
+        if (filenamecontrol) {
+            filenamecontrol.value = args[2];
+            //var insertbutton = document.getElementById('insert');
+            this._form.one('.' + CSS.INPUTSUBMIT).disabled = false;
+            //insertbutton.disabled = false;
+        }
+
+        //console.log("just  updated: " + args[3] + ' with ' + args[2]);
+    },
+
+
+    /**
      * Display the widgets dialog
      *
      * @method _displayDialogue
      * @private
      */
-    _displayWidgetsDialogue: function(e, clickedicon) {
+    _displayWidgetsDialogue: function (e, clickedicon) {
         e.preventDefault();
-        var width=400;
+        var width = 400;
 
 
         var dialogue = this.getDialogue({
@@ -359,32 +361,32 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
             width: width + 'px',
             focusAfterHide: clickedicon
         });
-		//dialog doesn't detect changes in width without this
-		//if you reuse the dialog, this seems necessary
-        if(dialogue.width !== width + 'px'){
-            dialogue.set('width',width+'px');
+        //dialog doesn't detect changes in width without this
+        //if you reuse the dialog, this seems necessary
+        if (dialogue.width !== width + 'px') {
+            dialogue.set('width', width + 'px');
         }
-        
+
         //create content container
-        var bodycontent =  Y.Node.create('<div></div>');
-        
+        var bodycontent = Y.Node.create('<div></div>');
+
         //create and append header
         var template = Y.Handlebars.compile(BUTTONSHEADERTEMPLATE),
-            	content = Y.Node.create(template({
+            content = Y.Node.create(template({
                 headertext: M.util.get_string('chooseinsert', COMPONENTNAME)
             }));
-         bodycontent.append(content);
+        bodycontent.append(content);
 
         //get button nodes
         var buttons = this._getButtonsForNames(clickedicon);
 
-        
-         Y.Array.each(buttons, function(button) {  	 
+
+        Y.Array.each(buttons, function (button) {
             //loop start
-                bodycontent.append(button);
+            bodycontent.append(button);
             //loop end
         }, bodycontent);
-     
+
 
         //set to bodycontent
         dialogue.set('bodyContent', bodycontent);
@@ -392,62 +394,62 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         this.markUpdated();
     },
 
-	    /**
+    /**
      * Display the chosen widgets template form
      *
      * @method _showTemplateForm
      * @private
      */
-    _showTemplateForm: function(e,templateindex) {
+    _showTemplateForm: function (e, templateindex) {
         e.preventDefault();
-        var width=400;
+        var width = 400;
 
-		
+
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
             width: width + 'px'
         });
-		//dialog doesn't detect changes in width without this
-		//if you reuse the dialog, this seems necessary
-        if(dialogue.width !== width + 'px'){
-            dialogue.set('width',width+'px');
+        //dialog doesn't detect changes in width without this
+        //if you reuse the dialog, this seems necessary
+        if (dialogue.width !== width + 'px') {
+            dialogue.set('width', width + 'px');
         }
 
         //get fields , 1 per variable
         var fields = this._getTemplateFields(templateindex);
         var instructions = this.get('instructions')[templateindex];
-            instructions = decodeURIComponent(instructions);
-	
-		//get header node. It will be different if we have no fields
-		if(fields && fields.length>0){
-			var useheadertext  = M.util.get_string('fieldsheader', COMPONENTNAME);
-		}else{
-			var useheadertext =  M.util.get_string('nofieldsheader', COMPONENTNAME);
-		}
-		var template = Y.Handlebars.compile(FIELDSHEADERTEMPLATE),
-            	content = Y.Node.create(template({
+        instructions = decodeURIComponent(instructions);
+
+        //get header node. It will be different if we have no fields
+        if (fields && fields.length > 0) {
+            var useheadertext = M.util.get_string('fieldsheader', COMPONENTNAME);
+        } else {
+            var useheadertext = M.util.get_string('nofieldsheader', COMPONENTNAME);
+        }
+        var template = Y.Handlebars.compile(FIELDSHEADERTEMPLATE),
+            content = Y.Node.create(template({
                 key: this.get('keys')[templateindex],
                 headertext: useheadertext,
                 instructions: instructions
             }));
         var header = content;
-		
-		//set container for our nodes (header, fields, buttons)
-        var bodycontent =  Y.Node.create('<div></div>');
-        
+
+        //set container for our nodes (header, fields, buttons)
+        var bodycontent = Y.Node.create('<div></div>');
+
         //add our header
-         bodycontent.append(header);
-        
+        bodycontent.append(header);
+
         //add fields
-         Y.Array.each(fields, function(field) {  	 
+        Y.Array.each(fields, function (field) {
             //loop start
-                bodycontent.append(field);
+            bodycontent.append(field);
             //loop end
         }, bodycontent);
-     
-     	//add submit button
-     	var submitbuttons = this._getSubmitButtons(templateindex);
-     	bodycontent.append(submitbuttons)
+
+        //add submit button
+        var submitbuttons = this._getSubmitButtons(templateindex);
+        bodycontent.append(submitbuttons)
 
         //set to bodycontent
         dialogue.set('bodyContent', bodycontent);
@@ -455,7 +457,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
         this.markUpdated();
     },
 
-  /**
+    /**
      * Return the widget dialogue content for the tool, attaching any required
      * events.
      *
@@ -463,80 +465,80 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getSubmitButtons: function(templateindex) {
-  
+    _getSubmitButtons: function (templateindex) {
+
         var template = Y.Handlebars.compile(SUBMITTEMPLATE),
-        	
+
             content = Y.Node.create(template({
                 elementid: this.get('host').get('elementid'),
-                inserttext:  M.util.get_string('insert', COMPONENTNAME)
+                inserttext: M.util.get_string('insert', COMPONENTNAME)
             }));
-     
-		content.one('.' + CSS.INPUTSUBMIT).on('click', this._doWidgetsInsert, this, templateindex);
+
+        content.one('.' + CSS.INPUTSUBMIT).on('click', this._doWidgetsInsert, this, templateindex);
         return content;
     },
 
 
-   /**
+    /**
      * Return a field (yui node) for each variable in the template
      *
      * @method _getTemplateFields
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getTemplateFields: function(templateindex) {
-    
-    	var allcontent=[];
-    	var thekey=this.get('keys')[templateindex];
-    	var thevariables=this.get('variables')[templateindex];
-    	var thedefaults=this.get('defaults')[templateindex];
-    	
-    	//defaults array 
-    	//var defaultsarray=this._getDefArray(thedefaults);
-		var defaultsarray=thedefaults;
-		
-    	 Y.Array.each(thevariables, function(thevariable, currentindex) { 	 
+    _getTemplateFields: function (templateindex) {
+
+        var allcontent = [];
+        var thekey = this.get('keys')[templateindex];
+        var thevariables = this.get('variables')[templateindex];
+        var thedefaults = this.get('defaults')[templateindex];
+
+        //defaults array
+        //var defaultsarray=this._getDefArray(thedefaults);
+        var defaultsarray = thedefaults;
+
+        Y.Array.each(thevariables, function (thevariable, currentindex) {
             //loop start
-			if((thevariable in defaultsarray) && defaultsarray[thevariable].indexOf('|')>-1){
-			
-				var containertemplate = Y.Handlebars.compile(SELECTCONTAINERTEMPLATE),
-					content = Y.Node.create(containertemplate({
-					elementid: this.get('host').get('elementid'),
-					variable: thevariable,
-					defaultvalue: defaultsarray[thevariable],
-					variableindex: currentindex
-				}));
-			
-				var selecttemplate = Y.Handlebars.compile(SELECTTEMPLATE),
-					selectbox = Y.Node.create(selecttemplate({
-					variable: thevariable,
-					defaultvalue: defaultsarray[thevariable],
-					variableindex: currentindex
-				}));
-			
-				var opts = defaultsarray[thevariable].split('|');
-				var htmloptions="";
-				var opttemplate = Y.Handlebars.compile(OPTIONTEMPLATE);
-				Y.Array.each(opts, function(opt, optindex) {
-					var optcontent = Y.Node.create(opttemplate({
-							option: opt
-						}));
-					selectbox.appendChild(optcontent);
-				});
-				content.appendChild(selectbox);
-				
-			}else{
-			
-				 var template = Y.Handlebars.compile(FIELDTEMPLATE),
-					content = Y.Node.create(template({
-					elementid: this.get('host').get('elementid'),
-					variable: thevariable,
-					defaultvalue: defaultsarray[thevariable],
-					variableindex: currentindex
-				}));
-			}
-			
-			
+            if ((thevariable in defaultsarray) && defaultsarray[thevariable].indexOf('|') > -1) {
+
+                var containertemplate = Y.Handlebars.compile(SELECTCONTAINERTEMPLATE),
+                    content = Y.Node.create(containertemplate({
+                        elementid: this.get('host').get('elementid'),
+                        variable: thevariable,
+                        defaultvalue: defaultsarray[thevariable],
+                        variableindex: currentindex
+                    }));
+
+                var selecttemplate = Y.Handlebars.compile(SELECTTEMPLATE),
+                    selectbox = Y.Node.create(selecttemplate({
+                        variable: thevariable,
+                        defaultvalue: defaultsarray[thevariable],
+                        variableindex: currentindex
+                    }));
+
+                var opts = defaultsarray[thevariable].split('|');
+                var htmloptions = "";
+                var opttemplate = Y.Handlebars.compile(OPTIONTEMPLATE);
+                Y.Array.each(opts, function (opt, optindex) {
+                    var optcontent = Y.Node.create(opttemplate({
+                        option: opt
+                    }));
+                    selectbox.appendChild(optcontent);
+                });
+                content.appendChild(selectbox);
+
+            } else {
+
+                var template = Y.Handlebars.compile(FIELDTEMPLATE),
+                    content = Y.Node.create(template({
+                        elementid: this.get('host').get('elementid'),
+                        variable: thevariable,
+                        defaultvalue: defaultsarray[thevariable],
+                        variableindex: currentindex
+                    }));
+            }
+
+
             allcontent.push(content);
             //loop end
         }, this);
@@ -546,7 +548,7 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
     },
 
 
-     /**
+    /**
      * Return the dialogue content for the tool, attaching any required
      * events.
      *
@@ -554,40 +556,40 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getButtonsForNames: function(clickedicon) {
-    
-    	var allcontent=[];
-    	 Y.Array.each(this.get('names'), function(thename, currentindex) { 	 
+    _getButtonsForNames: function (clickedicon) {
+
+        var allcontent = [];
+        Y.Array.each(this.get('names'), function (thename, currentindex) {
             //loop start
-             var template = Y.Handlebars.compile(BUTTONTEMPLATE),
-            	content = Y.Node.create(template({
-            	elementid: this.get('host').get('elementid'),
-                name: thename,
-                templateindex: currentindex
-            }));
+            var template = Y.Handlebars.compile(BUTTONTEMPLATE),
+                content = Y.Node.create(template({
+                    elementid: this.get('host').get('elementid'),
+                    name: thename,
+                    templateindex: currentindex
+                }));
             this._form = content;
-            content.one('.' + CSS.NAMEBUTTON + '_' + currentindex).on('click', this._showTemplateForm, this,currentindex);
+            content.one('.' + CSS.NAMEBUTTON + '_' + currentindex).on('click', this._showTemplateForm, this, currentindex);
             allcontent.push(content);
             //loop end
         }, this);
 
         return allcontent;
     },
-    
-    _getDefArray: function(thedefaults){
-    	//defaults array 
-    	var defaultsarray=[];
-    	var defaultstemparray = thedefaults.match(/([^=,]*)=("[^"]*"|[^,"]*)/g);//thedefaults.split(',');
-    	Y.Array.each(defaultstemparray, function(defset){
-    		//loop start
-    		var defsetarray = defset.split('=');
-    		if(defsetarray && defsetarray.length>1){
-    			defaultsarray[defsetarray[0]] = defsetarray[1].replace(/"/g,'');
-    		}
-    	 //loop end
+
+    _getDefArray: function (thedefaults) {
+        //defaults array
+        var defaultsarray = [];
+        var defaultstemparray = thedefaults.match(/([^=,]*)=("[^"]*"|[^,"]*)/g);//thedefaults.split(',');
+        Y.Array.each(defaultstemparray, function (defset) {
+            //loop start
+            var defsetarray = defset.split('=');
+            if (defsetarray && defsetarray.length > 1) {
+                defaultsarray[defsetarray[0]] = defsetarray[1].replace(/"/g, '');
+            }
+            //loop end
         }, this);
         return defaultsarray;
-    
+
     },
 
     /**
@@ -595,72 +597,73 @@ Y.namespace('M.atto_poodll').Button = Y.Base.create('button', Y.M.editor_atto.Ed
      * @method _getDialogueContent
      * @private
      */
-    _doWidgetsInsert : function(e,templateindex){
+    _doWidgetsInsert: function (e, templateindex) {
         e.preventDefault();
         this.getDialogue({
             focusAfterHide: null
         }).hide();
-        
+
         var retstring = "{POODLL:type=";
         var thekey = this.get('keys')[templateindex];
-        var thevariables=this.get('variables')[templateindex];
-        var thedefaults=this.get('defaults')[templateindex];
-        var theend=this.get('ends')[templateindex];
-          var defaultsarray=thedefaults;
-        
+        var thevariables = this.get('variables')[templateindex];
+        var thedefaults = this.get('defaults')[templateindex];
+        var theend = this.get('ends')[templateindex];
+        var defaultsarray = thedefaults;
+
         //add key to return string
         retstring += '"' + thekey + '"';
-        
+
         //add variables to return string
-         Y.Array.each(thevariables, function(variable, currentindex) {
-        //loop start
-        	var thefield = Y.one('.' + CSS.TEMPLATEVARIABLE + '_' + currentindex);
-        	var thevalue = thefield.get('value');
-        	if(thevalue && thevalue!=defaultsarray[variable]){
-        		retstring += ',' + variable + '="' + thevalue + '"';
-        	}
-        //loop end
+        Y.Array.each(thevariables, function (variable, currentindex) {
+            //loop start
+            var thefield = Y.one('.' + CSS.TEMPLATEVARIABLE + '_' + currentindex);
+            var thevalue = thefield.get('value');
+            if (thevalue && thevalue != defaultsarray[variable]) {
+                retstring += ',' + variable + '="' + thevalue + '"';
+            }
+            //loop end
         }, this);
-        
+
         //close out return string
         retstring += "}";
-        
+
         //add an end tag, if we need to
-        if(theend){
-        	retstring += '<br/>{POODLL:type="' + thekey + '_end"}';
+        if (theend) {
+            retstring += '<br/>{POODLL:type="' + thekey + '_end"}';
         }
 
         this.editor.focus();
         this.get('host').insertContentAtFocusPoint(retstring);
         this.markUpdated();
 
-    }	
-	
-}, {ATTRS: {
-		names: {
-			value: null
-		},
-		
-		keys: {
-			value: null
-		},
+    }
 
-		variables: {
-			value: null
-		},
+}, {
+    ATTRS: {
+        names: {
+            value: null
+        },
 
-		defaults: {
-			value: null
-		}
-		,
-		instructions: {
-			value: null
-		},
-		customicon: {
-			value: null
-		},
-		ends: {
-			value: null
-		}
+        keys: {
+            value: null
+        },
+
+        variables: {
+            value: null
+        },
+
+        defaults: {
+            value: null
+        }
+        ,
+        instructions: {
+            value: null
+        },
+        customicon: {
+            value: null
+        },
+        ends: {
+            value: null
+        }
     }
 });

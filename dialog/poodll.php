@@ -55,43 +55,51 @@ $coursecontextid = optional_param('coursecontextid', 0, PARAM_INT);
 $modulecontextid = optional_param('modulecontextid', 0, PARAM_INT);
 
 //contextid
-$usercontextid=context_user::instance($USER->id)->id;
+$usercontextid = context_user::instance($USER->id)->id;
 $callbackjs = '';//'atto_poodll_button.updatefilename';
-$hints= Array('size'=>'small');
-if($coursecontextid){
-	$hints['coursecontextid']=$coursecontextid;
+$hints = Array('size' => 'small');
+if ($coursecontextid) {
+    $hints['coursecontextid'] = $coursecontextid;
 }
-if($modulecontextid){
-	$hints['modulecontextid']=$modulecontextid;
+if ($modulecontextid) {
+    $hints['modulecontextid'] = $modulecontextid;
 }
 
 // Load the recorder.
-switch($recorder){
- case 'video':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchVideoRecorderForSubmission('auto', 'none', $updatecontrol, $usercontextid,'user','draft',$itemid,0,$callbackjs,$hints);
-	$instruction = get_string('recordtheninsert', 'atto_poodll');
- 	break;
- case 'snapshot':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchHTML5SnapshotCamera($updatecontrol,350,400,$usercontextid,'user','draft',$itemid,$callbackjs,$hints);
-	$instruction = get_string('snaptheninsert', 'atto_poodll');
- 	break;
- case 'whiteboard':
- 	$recorderhtml =  \filter_poodll\poodlltools::fetchWhiteboardForSubmission($updatecontrol, $usercontextid,'user','draft',$itemid,400,350,"",$usewhiteboard,$callbackjs);
-	$recorderhtml = "<div class='jswhiteboard'>" . $recorderhtml . "</div>"; 
-	$instruction = get_string('drawtheninsert', 'atto_poodll');
- 	break;
- case 'audiored5':
- case 'audiomp3':
- default:
-    $hints['size'] ='auto';
-	$recorderhtml =  \filter_poodll\poodlltools::fetchMP3RecorderForSubmission($updatecontrol, $usercontextid ,'user','draft',$itemid,0,$callbackjs,$hints);
-	$instruction = get_string('recordtheninsert', 'atto_poodll');
+switch ($recorder) {
+    case 'video':
+        $recorderhtml =
+                \filter_poodll\poodlltools::fetchVideoRecorderForSubmission('auto', 'none', $updatecontrol, $usercontextid, 'user',
+                        'draft', $itemid, 0, $callbackjs, $hints);
+        $instruction = get_string('recordtheninsert', 'atto_poodll');
+        break;
+    case 'snapshot':
+        $recorderhtml =
+                \filter_poodll\poodlltools::fetchHTML5SnapshotCamera($updatecontrol, 350, 400, $usercontextid, 'user', 'draft',
+                        $itemid, $callbackjs, $hints);
+        $instruction = get_string('snaptheninsert', 'atto_poodll');
+        break;
+    case 'whiteboard':
+        $recorderhtml =
+                \filter_poodll\poodlltools::fetchWhiteboardForSubmission($updatecontrol, $usercontextid, 'user', 'draft', $itemid,
+                        400, 350, "", $usewhiteboard, $callbackjs);
+        $recorderhtml = "<div class='jswhiteboard'>" . $recorderhtml . "</div>";
+        $instruction = get_string('drawtheninsert', 'atto_poodll');
+        break;
+    case 'audiored5':
+    case 'audiomp3':
+    default:
+        $hints['size'] = 'auto';
+        $recorderhtml =
+                \filter_poodll\poodlltools::fetchMP3RecorderForSubmission($updatecontrol, $usercontextid, 'user', 'draft', $itemid,
+                        0, $callbackjs, $hints);
+        $instruction = get_string('recordtheninsert', 'atto_poodll');
 }
 
 $PAGE->set_pagelayout('embedded');
 $PAGE->set_title(get_string('dialogtitle', 'atto_poodll'));
 $PAGE->requires->css(new moodle_url($CFG->wwwroot . '/lib/editor/atto/plugins/poodll/dialog/poodll.css'));
-$PAGE->requires->js(new moodle_url($CFG->wwwroot. '/filter/poodll/module.js'),true);
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/filter/poodll/module.js'), true);
 $PAGE->requires->jquery();
 
 //load our resize script
@@ -100,13 +108,13 @@ $PAGE->requires->jquery();
 
 echo $OUTPUT->header();
 ?>
-<div id="atto_poodll_container">
-<div style="text-align: center;">
-<p id="messageAlert"><?php echo $instruction; ?></p>
-<?php
-echo $recorderhtml;
-?>
-</div>
-</div>
+    <div id="atto_poodll_container">
+        <div style="text-align: center;">
+            <p id="messageAlert"><?php echo $instruction; ?></p>
+            <?php
+            echo $recorderhtml;
+            ?>
+        </div>
+    </div>
 <?php
 echo $OUTPUT->footer();

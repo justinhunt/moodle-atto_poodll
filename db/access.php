@@ -26,72 +26,78 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-    'atto/poodll:visible' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    ),
-    'atto/poodll:allowaudiomp3' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    ),
+        'atto/poodll:visible' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
+        ),
+        'atto/poodll:allowaudiomp3' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
+        ),
 
-    'atto/poodll:allowvideo' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
+        'atto/poodll:allowvideo' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
+        ),
+        'atto/poodll:allowwhiteboard' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
+        ),
+        'atto/poodll:allowsnapshot' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
+        ),
+        'atto/poodll:allowwidgets' => array(
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'coursecreator' => CAP_ALLOW,
+                        'teacher' => CAP_ALLOW,
+                        'editingteacher' => CAP_ALLOW,
+                        'student' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW,
+                        'user' => CAP_ALLOW
+                )
         )
-    ),
-    'atto/poodll:allowwhiteboard' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    ),
-    'atto/poodll:allowsnapshot' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    ),
-    'atto/poodll:allowwidgets' => array(
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-			'coursecreator' => CAP_ALLOW,
-			'teacher' => CAP_ALLOW,
-            'editingteacher' => CAP_ALLOW,
-			'student' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        )
-    )
 );
 

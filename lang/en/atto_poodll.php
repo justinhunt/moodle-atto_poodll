@@ -30,7 +30,6 @@ $string['pluginname'] = 'PoodLL Anywhere(Atto)';
 $string['settings'] = 'PoodLL Anywhere(Atto)';
 $string['unpoodll'] = 'Unpoodll';
 
-
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
 $string['audiomp3_desc'] = 'Record Audio';
